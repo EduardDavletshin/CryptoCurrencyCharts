@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recycler_view_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        >
+
+        <ImageView
+            android:id="@+id/ic_label"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_show_chart_black_24dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/names"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ic_label"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/ic_full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="8sp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                tools:text="Bitcoin"
+                />
+
+
+            <TextView
+                android:id="@+id/ic_short_name"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#8b000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:text="BTC"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dollar"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/names"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#8b000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="$"
+            />
+
+        <TextView
+            android:id="@+id/priceUSD"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/dollar"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#8b000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:text="500"
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="16dp"
+            android:src="@drawable/ic_chevron_right_black_24dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
