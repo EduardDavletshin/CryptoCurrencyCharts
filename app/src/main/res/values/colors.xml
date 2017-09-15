@@ -2,6 +2,9 @@
 <resources>
     <color name="colorPrimary">#3c7ff1</color>
     <color name="colorPrimaryDark">#286adb</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ffbc17</color>
+    <color name="colorTest">#2D882D</color>
     <color name="black">#de000000</color>
+    <color name="detailedActionBar">#f7931a</color>
+    <color name="fab">#ffbc17</color>
 </resources>

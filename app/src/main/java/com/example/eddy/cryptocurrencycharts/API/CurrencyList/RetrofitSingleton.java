@@ -1,4 +1,4 @@
-package com.example.eddy.cryptocurrencycharts.API;
+package com.example.eddy.cryptocurrencycharts.API.CurrencyList;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.example.eddy.cryptocurrencycharts.API.AsyncTaskCallback;
-import com.example.eddy.cryptocurrencycharts.API.DataLoader;
+import com.example.eddy.cryptocurrencycharts.API.CurrencyList.AsyncTaskCallback;
+import com.example.eddy.cryptocurrencycharts.API.CurrencyList.DataLoader;
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
 import com.example.eddy.cryptocurrencycharts.Models.Response;
 import com.example.eddy.cryptocurrencycharts.RecyvlerView.RecyclerViewAdapter;
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 public class CurrencyListActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_currency_list) android.support.v7.widget.RecyclerView rvCurrencyList;
-    Response response;
+    Response            response;
     ArrayList<Currency> currencyArrayList;
 
     @Override
@@ -27,15 +27,16 @@ public class CurrencyListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_currency_list);
         ButterKnife.bind(this);
 
-        currencyArrayList = generateCurrencyList();
-
         getCurrencyArrayList();
     }
+
+
 
     private void initRecyclerView(ArrayList<Currency> currencies) {
         rvCurrencyList.setAdapter(new RecyclerViewAdapter(currencies));
         rvCurrencyList.setLayoutManager(new LinearLayoutManager(this));
         rvCurrencyList.setHasFixedSize(true);
+        rvCurrencyList.setNestedScrollingEnabled(false);
     }
 
     private ArrayList<Currency> generateCurrencyList() {
@@ -49,6 +50,7 @@ public class CurrencyListActivity extends AppCompatActivity {
     private void getCurrencyArrayList() {
         DataLoader dataLoader = new DataLoader(new AsyncTaskCallback() {
             @Override public void onFinish(ArrayList<Currency> r) {
+                currencyArrayList = r;
                 initRecyclerView(r);
             }
         });

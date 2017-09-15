@@ -1,4 +1,4 @@
-package com.example.eddy.cryptocurrencycharts.API;
+package com.example.eddy.cryptocurrencycharts.API.CurrencyList;
 
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
 import com.example.eddy.cryptocurrencycharts.Models.Response;

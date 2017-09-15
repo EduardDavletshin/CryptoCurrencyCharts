@@ -1,9 +1,8 @@
-package com.example.eddy.cryptocurrencycharts.API;
+package com.example.eddy.cryptocurrencycharts.API.CurrencyList;
 
 import android.os.AsyncTask;
 
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
-import com.example.eddy.cryptocurrencycharts.Models.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;

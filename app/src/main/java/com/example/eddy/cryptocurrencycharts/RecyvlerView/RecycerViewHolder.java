@@ -20,6 +20,8 @@ public class RecycerViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.ic_full_name)  TextView  fullName;
     @BindView(R.id.ic_short_name) TextView  shortName;
     @BindView(R.id.priceUSD)      TextView  priceUSD;
+    @BindView(R.id.details)       ImageView details;
+
 
     public RecycerViewHolder(View itemView) {
         super(itemView);

@@ -3,9 +3,8 @@
     package="com.example.eddy.cryptocurrencycharts"
     >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -26,14 +25,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ScrollingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".CurrencyListActivity"></activity>
+        <activity
+            android:name=".CurrencyListActivity"
+            android:theme="@style/AppTheme"
+            />
+        <activity
+            android:name=".DetailedCurrencyActivity"
+            android:label="@string/title_activity_detailed_currency"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            />
     </application>
 
 </manifest>
