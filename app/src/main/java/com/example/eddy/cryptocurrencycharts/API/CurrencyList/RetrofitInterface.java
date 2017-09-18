@@ -14,5 +14,5 @@ import retrofit2.http.GET;
 
 public interface RetrofitInterface {
 
-    @GET("/v1/ticker/?limit=20") Call<ArrayList<Currency>> getResponse();
+    @GET("v1/ticker/?limit=20") Call<ArrayList<Currency>> getResponse();
 }

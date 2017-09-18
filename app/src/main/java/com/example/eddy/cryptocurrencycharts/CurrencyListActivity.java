@@ -1,6 +1,8 @@
 package com.example.eddy.cryptocurrencycharts;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -15,11 +17,16 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.eddy.cryptocurrencycharts.API.CurrencyList.DataLoader.data;
+
 public class CurrencyListActivity extends AppCompatActivity {
 
+    private final String PREFS = "prefs";
     @BindView(R.id.rv_currency_list) android.support.v7.widget.RecyclerView rvCurrencyList;
-    Response            response;
-    ArrayList<Currency> currencyArrayList;
+    Response                 response;
+    ArrayList<Currency>      currencyArrayList;
+    SharedPreferences        sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +34,23 @@ public class CurrencyListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_currency_list);
         ButterKnife.bind(this);
 
-        getCurrencyArrayList();
+//        if (!getPreferences(0).contains(PREFS)) {
+//            getCurrencyArrayList();
+//            initRecyclerView(currencyArrayList);
+//        } else {
+//            sharedPreferences = getPreferences(0);
+//            Type type = new TypeToken<ArrayList<Currency>>() {}.getType();
+//            currencyArrayList = new Gson().fromJson(sharedPreferences.getString(PREFS, null), type);
+//        }
     }
 
-
+    @Override protected void onStop() {
+        super.onStop();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+        editor.putString(PREFS, data);
+        editor.apply();
+    }
 
     private void initRecyclerView(ArrayList<Currency> currencies) {
         rvCurrencyList.setAdapter(new RecyclerViewAdapter(currencies));

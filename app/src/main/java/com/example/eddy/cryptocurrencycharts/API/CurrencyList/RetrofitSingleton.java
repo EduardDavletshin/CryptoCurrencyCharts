@@ -9,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitSingleton {
 
-    private static final String BASE_URL = "https://api.coinmarketcap.com";
-    private static RetrofitSingleton instance = new RetrofitSingleton();
+    private static final String            BASE_URL = "https://api.coinmarketcap.com";
+    private static       RetrofitSingleton instance = new RetrofitSingleton();
     private RetrofitInterface retrofitInterface;
 
     public RetrofitSingleton() {
