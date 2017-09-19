@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.example.eddy.cryptocurrencycharts.CurrencyListActivity;
 import com.example.eddy.cryptocurrencycharts.DetailedCurrencyActivity;
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
-import com.example.eddy.cryptocurrencycharts.Models.Response;
 import com.example.eddy.cryptocurrencycharts.R;
 
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecycerViewHolder> {
+
     private ArrayList<Currency> currencyArrayList;
-    private Response response;
     private Context             context;
 
     public RecyclerViewAdapter(ArrayList<Currency> currencyList) {
@@ -49,6 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecycerViewHolder>
                 intent.putParcelableArrayListExtra("data", currencyArrayList);
                 intent.putExtra("position", position);
                 context.startActivity(intent);
+                ((CurrencyListActivity)context).finish();
             }
         });
     }

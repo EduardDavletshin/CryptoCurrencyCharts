@@ -1,7 +1,6 @@
 package com.example.eddy.cryptocurrencycharts.API.CurrencyList;
 
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
-import com.example.eddy.cryptocurrencycharts.Models.Response;
 
 import java.util.ArrayList;
 

@@ -2,16 +2,18 @@ package com.example.eddy.cryptocurrencycharts;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.example.eddy.cryptocurrencycharts.API.CurrencyList.AsyncTaskCallback;
 import com.example.eddy.cryptocurrencycharts.API.CurrencyList.DataLoader;
 import com.example.eddy.cryptocurrencycharts.Models.Currency;
-import com.example.eddy.cryptocurrencycharts.Models.Response;
 import com.example.eddy.cryptocurrencycharts.RecyvlerView.RecyclerViewAdapter;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -21,35 +23,37 @@ import static com.example.eddy.cryptocurrencycharts.API.CurrencyList.DataLoader.
 
 public class CurrencyListActivity extends AppCompatActivity {
 
-    private final String PREFS = "prefs";
+    public static final String PREFS = "prefs";
     @BindView(R.id.rv_currency_list) android.support.v7.widget.RecyclerView rvCurrencyList;
-    Response                 response;
     ArrayList<Currency>      currencyArrayList;
     SharedPreferences        sharedPreferences;
     SharedPreferences.Editor editor;
+    String                   string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currency_list);
         ButterKnife.bind(this);
+        sharedPreferences = getSharedPreferences(PREFS, MODE_PRIVATE);
 
-//        if (!getPreferences(0).contains(PREFS)) {
-//            getCurrencyArrayList();
-//            initRecyclerView(currencyArrayList);
-//        } else {
-//            sharedPreferences = getPreferences(0);
-//            Type type = new TypeToken<ArrayList<Currency>>() {}.getType();
-//            currencyArrayList = new Gson().fromJson(sharedPreferences.getString(PREFS, null), type);
-//        }
+        if (sharedPreferences.getString(PREFS, "").equals("")) {
+            getCurrencyArrayList();
+        } else {
+            Type type = new TypeToken<ArrayList<Currency>>() {
+            }.getType();
+            currencyArrayList = new Gson().fromJson(sharedPreferences.getString(PREFS, ""), type);
+            Log.d(PREFS, sharedPreferences.getString(PREFS, ""));
+            initRecyclerView(currencyArrayList);
+        }
     }
 
-    @Override protected void onStop() {
-        super.onStop();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        sharedPreferences = getSharedPreferences(PREFS, MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putString(PREFS, data);
-        editor.apply();
+        editor.commit();
     }
 
     private void initRecyclerView(ArrayList<Currency> currencies) {
@@ -71,6 +75,7 @@ public class CurrencyListActivity extends AppCompatActivity {
         DataLoader dataLoader = new DataLoader(new AsyncTaskCallback() {
             @Override public void onFinish(ArrayList<Currency> r) {
                 currencyArrayList = r;
+                string = data;
                 initRecyclerView(r);
             }
         });
